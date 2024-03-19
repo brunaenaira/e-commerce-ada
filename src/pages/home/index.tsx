@@ -1,27 +1,36 @@
+import {Component} from "react";
 import MlApi from "../../service/MlApi.tsx";
 
-export default function HomePage(query: string = 'iPhone') {
+export default class HomePage extends Component<string> {
+    constructor(props: string) {
+        super(props);
+        this.state = {products: [], search: "iPhone"}
+    }
 
-    getUsersData(query)
-    return (
-        <div>
-            <h3>Produtos</h3>
-        </div>
-    );
-}
+    handleCallApi() {
+        MlApi(this.state.search).get("/sites/MLB/search")
+            .then(res => {
+                const products = res.data.results.map((product: {
+                    title: string;
+                    thumbnail: string;
+                    price: number;
+                }) => ({
+                    title: product.title, thumbnail: product.thumbnail, price: product.price
+                }));
+                this.setState({products})
+            });
+    }
 
-function getUsersData(query: string) {
-    MlApi()
-        .get(`/sites/MLB/search`, {
-            params: {q: query}
-        })
-        .then(res => {
-            const data = res.data
-            console.log(data)
 
-        })
-        .catch((error) => {
-            console.log(error)
-        });
+    override componentDidMount() {
+        this.handleCallApi(this.state.search)
+    }
 
+    override render() {
+        return (
+            <div>
+                <h3>Produtos</h3>
+            </div>
+        );
+    }
 }
