@@ -1,10 +1,14 @@
 import {Component} from "react";
 import MlApi from "../../service/MlApi.tsx";
+import ProductCard from "../../components/ProductCard/ProductCard.tsx";
+import './style.css'
 
-export default class HomePage extends Component<string> {
+export default class HomePage extends Component<NonNullable<unknown>, HomeState> {
     constructor(props: string) {
         super(props);
-        this.state = {products: [], search: "iPhone"}
+        this.state = {
+            products: [], search: 'iPhone'
+        }
     }
 
     handleCallApi() {
@@ -23,14 +27,20 @@ export default class HomePage extends Component<string> {
 
 
     override componentDidMount() {
-        this.handleCallApi(this.state.search)
+        this.handleCallApi()
     }
 
     override render() {
         return (
-            <div>
-                <h3>Produtos</h3>
-            </div>
+
+            <section className="products container">
+                {this.state.products.map((product) => <ProductCard key={product.id} data={product}/>)}
+            </section>
         );
     }
+}
+
+interface HomeState {
+    products: [];
+    search: string;
 }
