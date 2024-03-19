@@ -5,7 +5,7 @@ import { EcommerceContext } from '../../context/EcommerceContext';
 import { useContext } from 'react';
 
 function CartButton() {
-    const { cart} = useContext(EcommerceContext);
+    const { cart } = useContext(EcommerceContext);
     return (<button
         type="button"
         className="cart__button">

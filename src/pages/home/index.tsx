@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import MlApi from "../../service/MlApi.tsx";
-import Index from "../../components/ProductCard";
+import ProductCard from "../../components/ProductCard";
 import './style.css'
 import { EcommerceContext } from "../../context/EcommerceContext.tsx";
 import { Product } from "../../@types/ecommerce";
@@ -22,7 +22,7 @@ export default function HomePage() {
     }, []);
     return (
         <section className="products container">
-            {products.map((product: Product) => <Index key={product.id} data={product} />)}
+            {products.map((product: Product) => <ProductCard key={product.id} product={product} />)}
         </section>
     );
 }

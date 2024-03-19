@@ -1,40 +1,37 @@
-import React from 'react';
-import {BsFillCartPlusFill} from 'react-icons/bs';
+import { useContext } from 'react';
+import { BsFillCartPlusFill } from 'react-icons/bs';
 
 import './style.css';
 import formatCurrency from "../../utils/formatCurrency.tsx";
+import { EcommerceContext } from '../../context/EcommerceContext.tsx';
 
-export default class Index extends React.Component<{
-    data: {
-        title: string;
-        thumbnail: string;
-        price: number;
-    }
-}> {
-    render() {
-        const {data} = this.props;
-        const {title, thumbnail, price} = data;
+export default function ProductCard({ product }) {
+    // const { product } = this.props;
+    const { cart, setCart } = useContext(EcommerceContext);
+    const addProductoCart = () => setCart([...cart, product]);
 
-        return (
-            <section className="product-card">
+    // const { title, thumbnail, price } = product;
 
-                <img
-                    src={thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}
-                    alt="product"
-                    className="card__image"
-                />
+    return (
+        <section className="product-card">
 
-                <div className="card__infos">
-                    <h2 className="card__price">{formatCurrency(price, 'BRL')}</h2>
-                    <h2 className="card__title">{title}</h2>
-                </div>
+            <img
+                src={product.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}
+                alt="product"
+                className="card__image"
+            />
 
-                <button
-                    type="button"
-                    className="button__add-cart">
-                    <BsFillCartPlusFill/>
-                </button>
-            </section>
-        );
-    }
+            <div className="card__infos">
+                <h2 className="card__price">{formatCurrency(product.price, 'BRL')}</h2>
+                <h2 className="card__title">{product.title}</h2>
+            </div>
+
+            <button
+                type="button"
+                onClick={addProductoCart}
+                className="button__add-cart">
+                <BsFillCartPlusFill />
+            </button>
+        </section>
+    );
 }
