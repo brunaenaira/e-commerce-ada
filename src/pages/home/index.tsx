@@ -1,6 +1,6 @@
 import {Component} from "react";
 import MlApi from "../../service/MlApi.tsx";
-import ProductCard from "../../components/ProductCard/ProductCard.tsx";
+import Index from "../../components/ProductCard";
 import './style.css'
 
 export default class HomePage extends Component<NonNullable<unknown>, HomeState> {
@@ -34,7 +34,7 @@ export default class HomePage extends Component<NonNullable<unknown>, HomeState>
         return (
 
             <section className="products container">
-                {this.state.products.map((product) => <ProductCard key={product.id} data={product}/>)}
+                {this.state.products.map((product) => <Index key={product.id} data={product}/>)}
             </section>
         );
     }

@@ -1,10 +1,10 @@
 import React from 'react';
 import {BsFillCartPlusFill} from 'react-icons/bs';
 
-import './ProductCard.css';
+import './style.css';
 import formatCurrency from "../../utils/formatCurrency.tsx";
 
-export default class ProductCard extends React.Component<{
+export default class Index extends React.Component<{
     data: {
         title: string;
         thumbnail: string;
