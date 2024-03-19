@@ -2,12 +2,13 @@ import {Component} from "react";
 import MlApi from "../../service/MlApi.tsx";
 import Index from "../../components/ProductCard";
 import './style.css'
+import {HomeState} from "../../@types/ecommerce";
 
 export default class HomePage extends Component<NonNullable<unknown>, HomeState> {
     constructor(props: string) {
         super(props);
         this.state = {
-            products: [], search: 'iPhone'
+            products: [], search: 'mochila'
         }
     }
 
@@ -38,9 +39,4 @@ export default class HomePage extends Component<NonNullable<unknown>, HomeState>
             </section>
         );
     }
-}
-
-interface HomeState {
-    products: [];
-    search: string;
 }
