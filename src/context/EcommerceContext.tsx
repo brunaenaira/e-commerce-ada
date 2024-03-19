@@ -4,14 +4,14 @@ interface Product {
     thumbnail: string;
     price: number;
 }
-interface Cart{
+interface Cart {
     products: Product[];
 }
 interface EcommerceContextType {
     products: Product[];
     setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
-    cart: Cart;
-    setCartItems: React.Dispatch<React.SetStateAction<Cart>>;
+    cart: Product[];
+    setCartItems: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
 const EcommerceContext = createContext<EcommerceContextType | undefined>(undefined);
@@ -20,17 +20,17 @@ interface EcommerceProviderProps {
     children: ReactNode;
 }
 
-function EcommerceProvider({ children }: EcommerceProviderProps) {
+export function EcommerceProvider({ children }: EcommerceProviderProps) {
     const [products, setProducts] = useState<Product[]>([]);
-    const [cart, setCart] = useState<Cart>(Cart(products=[]));
+    const [cart, setCart] = useState<Product[]>([]);
     return (
-        <EcommerceProvider.Provider value={{ vingador, setVingador , cart, setCart }}>
+        <EcommerceContext.Provider value={{ products, setProducts, cart, setCart }}>
             {children}
-        </EcommerceProvider.Provider>
+        </EcommerceContext.Provider>
     );
 }
 
-function useEcommerce(): EcommerceContextType {
+export function useEcommerce(): EcommerceContextType {
     const context = useContext(EcommerceContext);
     if (!context) {
         throw new Error('useEcommerce deve ser usado dentro de um EcommerceProvider');
