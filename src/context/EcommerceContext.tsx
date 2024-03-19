@@ -11,7 +11,7 @@ interface EcommerceContextType {
     products: Product[];
     setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
     cart: Product[];
-    setCartItems: React.Dispatch<React.SetStateAction<Product[]>>;
+    setCart: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
 export const EcommerceContext = createContext<EcommerceContextType | undefined>(undefined);
