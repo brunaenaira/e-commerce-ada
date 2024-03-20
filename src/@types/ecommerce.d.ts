@@ -1,11 +1,4 @@
-interface HomeState {
-    products: Product[];
-    search: string;
-}
-
-export interface Cart {
-    products: Product[]
-}
+import React from "react";
 
 export interface Product {
     id: number;
@@ -14,10 +7,11 @@ export interface Product {
     price: number;
 }
 
-export type EcommerceContextProps = {
+export interface EcommerceContextType {
     products: Product[];
-    setProducts: (products: [Product]) => void;
-    cart: Cart;
-    setCart: (products: [Product]) => void;
-};
-
+    setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+    cart: Product[];
+    setCart: React.Dispatch<React.SetStateAction<Product[]>>;
+    showCart: boolean;
+    setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+}

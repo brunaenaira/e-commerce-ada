@@ -1,16 +1,13 @@
-import { useContext } from 'react';
-import { BsFillCartPlusFill } from 'react-icons/bs';
+import {useContext} from 'react';
+import {BsFillCartPlusFill} from 'react-icons/bs';
 
 import './style.css';
 import formatCurrency from "../../utils/formatCurrency.tsx";
-import { EcommerceContext } from '../../context/EcommerceContext.tsx';
+import {EcommerceContext} from '../../context/EcommerceContext.tsx';
 
-export default function ProductCard({ product }) {
-    // const { product } = this.props;
-    const { cart, setCart } = useContext(EcommerceContext);
+export default function ProductCard({product}) {
+    const {cart, setCart} = useContext(EcommerceContext);
     const addProductoCart = () => setCart([...cart, product]);
-
-    // const { title, thumbnail, price } = product;
 
     return (
         <section className="product-card">
@@ -30,7 +27,7 @@ export default function ProductCard({ product }) {
                 type="button"
                 onClick={addProductoCart}
                 className="button__add-cart">
-                <BsFillCartPlusFill />
+                <BsFillCartPlusFill/>
             </button>
         </section>
     );
